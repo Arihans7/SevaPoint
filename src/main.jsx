@@ -21,7 +21,7 @@ const services = [
 const tools = [
   { icon: ScanLine, title: 'Image Resizer', text: 'Prepare photos and signatures for online forms.', action: 'Try tool', key: 'resize' },
   { icon: FileImage, title: 'Image to PDF', text: 'Combine image files into a shareable PDF.', action: 'Try tool', key: 'pdf' },
-  { icon: FileText, title: 'Typing Test', text: 'Build your English and Marathi typing speed.', action: 'Coming soon', key: 'typing' },
+ { icon: FileText, title: 'Typing Test', text: 'Practise English and Marathi typing and improve your speed.', action: 'Start typing test', key: 'typing' },
   { icon: Calculator, title: 'Calculators', text: 'Quick age, GST and everyday calculations.', action: 'Open tools', key: 'calc' },
 ];
 const notices = [
@@ -47,9 +47,17 @@ function App() {
   const filteredNotices = notices.filter(n => noticeFilter === 'All updates' || n.type === noticeFilter);
 
   const openTool = (key) => {
-    if (key === 'typing') { setActiveTool('typing'); return; }
-    setActiveTool(key);
-  };
+  if (key === 'typing') {
+    window.open(
+      'https://www.typingbuddy.com/',
+      '_blank',
+      'noopener,noreferrer'
+    );
+    return;
+  }
+
+  setActiveTool(key);
+};
   const closeModal = () => { setActiveTool(null); setImageFile(null); };
 
   return (
@@ -143,7 +151,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section process-section" id="about">
+        <section className="section process-section" id="process">
           <div className="container process-layout">
             <div className="process-intro"><div className="eyebrow">A SIMPLE PROCESS</div><h2>One step at<br/>a time.</h2><p>We make the process feel more manageable by helping you understand what comes next.</p><a className="text-link" href="#contact">Speak with our team <ArrowRight size={16}/></a></div>
             <div className="process-steps">
@@ -155,16 +163,75 @@ function App() {
           </div>
         </section>
 
-        <section className="section about-band">
-          <div className="container about-inner"><div className="about-symbol"><Sparkles size={30}/></div><div><div className="eyebrow">LOCAL SUPPORT, HUMAN APPROACH</div><h2>Digital services should feel<br/>a little less complicated.</h2></div><p>SevaPoint is designed to be a helpful local starting point for online applications, document services and everyday digital work. We’ll keep the guidance clear and the next step simple.</p></div>
-        </section>
+      ```jsx
+<section className="section about-band" id="about">
+  <div className="container">
+    <div className="about-inner">
+      <div className="about-symbol">
+        <Sparkles size={30} />
+      </div>
 
-        <section className="section contact-section" id="contact">
-          <div className="container contact-layout">
-            <div className="contact-copy"><div className="eyebrow">LET’S GET YOU STARTED</div><h2>What do you<br/>need help with?</h2><p>Send an enquiry or contact the centre directly. We’ll help you figure out the next step.</p><div className="contact-details"><div><span className="contact-icon"><MapPin size={18}/></span><div><strong>Visit the centre</strong><p>[Add full shop address]</p></div></div><div><span className="contact-icon"><MessageCircle size={18}/></span><div><strong>Call or WhatsApp</strong><p>[Add business phone number]</p></div></div><div><span className="contact-icon"><Clock3 size={18}/></span><div><strong>Opening hours</strong><p>Mon–Sat · 9:00 AM–8:00 PM <em>(confirm with owner)</em></p></div></div></div></div>
-            <form className="contact-form" onSubmit={e=>{e.preventDefault();setFormSent(true)}}><div className="form-top"><div><span>CONTACT FORM</span><h3>Tell us what you need.</h3></div><div className="form-asterisk">✳</div></div><div className="form-grid"><label>Your name<input required placeholder="Enter your name"/></label><label>Phone number<input required type="tel" pattern="[0-9+() -]{7,}" placeholder="Enter phone number"/></label><label className="full-field">Service you’re interested in<select defaultValue=""><option value="" disabled>Select a service</option>{services.map(s=><option key={s.title}>{s.title}</option>)}<option>Other enquiry</option></select></label><label className="full-field">A little more detail<textarea rows="3" placeholder="Tell us briefly what you need help with..."/></label></div><button className="button button-primary submit-button" type="submit">Send enquiry <ArrowRight size={16}/></button><p className="form-note"><ShieldCheck size={14}/> Demo form only. It will not send or store your details until a backend is connected.</p>{formSent&&<div className="form-success"><CheckCircle2 size={17}/> Demo submitted successfully. Connect a backend to receive enquiries.</div>}</form>
-          </div>
-        </section>
+      <div>
+        <div className="eyebrow">LOCAL SUPPORT, HUMAN APPROACH</div>
+        <h2>
+          Digital services should feel
+          <br />
+          a little less complicated.
+        </h2>
+      </div>
+
+      <p>
+        SevaPoint is your local destination for online applications,
+        document services and everyday digital assistance. Visit our
+        centre in Amravati and let us help you with your digital needs.
+      </p>
+    </div>
+
+    {/* Store Location */}
+    <div className="about-location">
+      <div className="about-location-copy">
+        <div className="eyebrow">VISIT OUR STORE</div>
+
+        <h3>Find us in Amravati.</h3>
+
+        <p className="location-address">
+          <MapPin size={19} />
+          <span>
+            Shop No. 1, Gulshan Point,
+            Rajapeth, Madhokar Peth,
+            Amravati, Maharashtra – 444605
+          </span>
+        </p>
+
+        <p className="location-description">
+          Visit SevaPoint Digital Service Centre for assistance with
+          online applications, government forms and document services.
+        </p>
+
+        <a
+          className="button button-dark location-directions"
+          href="https://maps.app.goo.gl/t2mykrakkvPhw8Ad7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get Directions <ArrowUpRight size={16} />
+        </a>
+      </div>
+
+      <div className="about-map">
+        <iframe
+          title="SevaPoint Digital Service Centre location in Amravati"
+          src="https://maps.google.com/maps?q=Shop%20No.%201%2C%20Gulshan%20Point%2C%20Rajapeth%2C%20Madhokar%20Peth%2C%20Amravati%2C%20Maharashtra%20444605&t=&z=16&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  </div>
+</section>
+```
+
       </main>
 
       <footer className="footer"><div className="container"><div className="footer-main"><div className="footer-brand"><a className="brand brand-footer" href="#home"><span className="brand-mark"><Sparkles size={20}/></span><span>Seva<span>Point</span><small> DIGITAL SERVICE CENTRE</small></span></a><p>Your local starting point for online applications, document services and everyday digital work.</p><div className="footer-pill"><span/> Local service. Clear guidance.</div></div><div className="footer-links"><h4>EXPLORE</h4><a href="#services">Services</a><a href="#updates">Jobs & Forms</a><a href="#tools">Digital Tools</a><a href="#about">About us</a></div><div className="footer-links"><h4>GET IN TOUCH</h4><a href="#contact">Contact the centre</a><a href="#contact">Opening hours</a><a href="#contact">Get directions</a><a href="#contact">Send an enquiry</a></div><div className="footer-contact"><h4>VISIT OR CALL</h4><p><MapPin size={15}/> [Add shop address]</p><p><MessageCircle size={15}/> [Add phone / WhatsApp]</p><p><Clock3 size={15}/> Mon–Sat · 9 AM–8 PM</p></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} SevaPoint Digital Service Centre. All rights reserved.</span><span>Privacy policy · Terms <i/> Built to make digital tasks simpler.</span></div></div></footer>
